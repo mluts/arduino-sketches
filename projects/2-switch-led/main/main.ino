@@ -1,5 +1,5 @@
 const int LED_PIN = 10,
-      INPUT_PIN = 9,
+      INPUT_PIN = 11,
       READ_THROTTLE = 10;
 
 bool on = false,
