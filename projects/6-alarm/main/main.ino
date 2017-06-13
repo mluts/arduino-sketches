@@ -1,5 +1,4 @@
 #define BUZZ 10
-#define RAD(n) (n * (PI / 180.0))
 #define PITCH_CONST 1.059463094359
 #define PITCH 440
 #define BASE_OCTAVE 4
@@ -10,11 +9,8 @@
 
 const float B = 60.0 * 1000 / TEMPO;
 
-bool sound_on = true,
-     led1_on = false,
+bool led1_on = false,
      led2_on = false;
-
-float time_played = 0;
 
 enum note {
   C, Cs,
@@ -34,10 +30,6 @@ struct note_sound {
   bool led1;
   bool led2;
 };
-
-int beats_played() {
-  return int(time_played / B);
-}
 
 float note_frequency(enum note n, int octave) {
   int distance;
@@ -211,19 +203,6 @@ struct note_sound bridge3[] {
 
   {H, 4, -1}
 };
-
-void render_leds() {
-  if(beats_played() % 2 == 0) {
-    led1_on = true;
-    led2_on = false;
-  } else {
-    led1_on = false;
-    led2_on = true;
-  }
-
-  digitalWrite(LED1, led1_on ? HIGH : LOW);
-  digitalWrite(LED2, led2_on ? HIGH : LOW);
-}
 
 void render_note_leds(bool led1, bool led2) {
   digitalWrite(LED1, led1 ? HIGH : LOW);
